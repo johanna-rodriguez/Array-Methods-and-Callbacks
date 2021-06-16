@@ -77,7 +77,7 @@ hint: the strings returned need to exactly match the string in step 4.
 function getWinnersByYear(array, getYearsCB, getWinnersCB) {
     const year = getYearsCB(array)
     const country = getWinnersCB(array)
-    const newArray = array.map((item, index) => `In ${year[index]}, ${country[index]} won the world cup!`);
+    const newArray = array.map((_, index) => `In ${year[index]}, ${country[index]} won the world cup!`);
     return newArray;
 }
 
@@ -93,8 +93,10 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
-   /* code here */
+function getAverageGoals(callback) {
+  const average = callback.reduce((sum, score, _, { length }) => sum + (score['Away Team Goals']+score['Home Team Goals']) / length,0).toFixed(2)
+  return average
+
 }
 
 
